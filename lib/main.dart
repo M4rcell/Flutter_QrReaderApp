@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home' : (BuildContext context) => HomePage()
         
+        
       },
      //personalizar el color global
       theme: ThemeData(
