@@ -15,6 +15,10 @@ class MyApp extends StatelessWidget {
         'home' : (BuildContext context) => HomePage()
         
       },
+     //personalizar el color global
+      theme: ThemeData(
+       primaryColor: Colors.deepPurple
+      ),
     );
   }
 }

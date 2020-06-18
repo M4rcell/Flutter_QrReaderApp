@@ -19,7 +19,9 @@ class _HomePageState extends State<HomePage> {
        actions: <Widget>[
          IconButton(
            icon: Icon(Icons.delete_forever),
-           onPressed: (){})
+           onPressed: (){},
+
+        )
        ],
       ),
       body: _callPage(currentIndex),
@@ -28,7 +30,9 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.filter_center_focus),
-        onPressed: null),
+        onPressed: (){},
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
       
     );
   }
