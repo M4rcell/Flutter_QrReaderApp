@@ -109,13 +109,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.0"
-  qrcode_reader:
-    dependency: "direct main"
-    description:
-      name: qrcode_reader
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.4"
   quiver:
     dependency: transitive
     description:
@@ -192,4 +185,4 @@ packages:
     source: hosted
     version: "3.6.1"
 sdks:
-  dart: ">=2.6.0 <3.0.0"
+  dart: ">=2.7.0 <3.0.0"
