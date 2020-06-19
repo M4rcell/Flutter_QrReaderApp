@@ -39,6 +39,8 @@ class _HomePageState extends State<HomePage> {
   
   _scanQR(){
     print("Scan QR ...");
+
+    
   }
 
   Widget _callPage(int paginaActual){ //evaluar en que pagina vas ha estar
