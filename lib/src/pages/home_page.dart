@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qrreaderapp/src/pages/mapas_page.dart';
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 
+import 'package:barcode_scan/barcode_scan.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,6 +13,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int currentIndex=0;
+  ScanResult scanResult;
+  String qrCodeResult ;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,10 +42,33 @@ class _HomePageState extends State<HomePage> {
     );
   }
   
-  _scanQR(){
-    print("Scan QR ...");
+  Future _scanQR() async{
 
-    
+     
+      try {
+     
+      var result = await BarcodeScanner.scan();
+
+      setState(() => scanResult = result);
+    } on PlatformException catch (e) {
+      var result = ScanResult(
+        type: ResultType.Error,
+        format: BarcodeFormat.unknown,
+      );
+
+      if (e.code == BarcodeScanner.cameraAccessDenied) {
+        setState(() {
+          result.rawContent = 'The user did not grant the camera permission!';
+        });
+      } else {
+        result.rawContent = 'Unknown error: $e';
+      }
+      setState(() {
+        scanResult = result;
+      });
+    }          
+
+
   }
 
   Widget _callPage(int paginaActual){ //evaluar en que pagina vas ha estar
