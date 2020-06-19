@@ -30,11 +30,15 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.filter_center_focus),
-        onPressed: (){},
+        onPressed: _scanQR,
         backgroundColor: Theme.of(context).primaryColor,
       ),
       
     );
+  }
+  
+  _scanQR(){
+    print("Scan QR ...");
   }
 
   Widget _callPage(int paginaActual){ //evaluar en que pagina vas ha estar
