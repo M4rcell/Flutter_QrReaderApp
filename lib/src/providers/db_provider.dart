@@ -141,7 +141,7 @@ class DBProvider{
 
     // ELIMINAR TODO LOS REGISTROS
 
-  Future<int>deleteScanAll( ) async{
+  Future<int>deleteScanAll() async{
 
     final db = await database;
 
