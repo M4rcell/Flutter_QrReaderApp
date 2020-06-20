@@ -7,6 +7,8 @@ import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'dart:developer' as developer;
 
+import 'package:qrreaderapp/src/providers/db_provider.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -51,9 +53,21 @@ class _HomePageState extends State<HomePage> {
   Future _scanQR() async{
 
     // https://platzi.com/
-    //
+    //geo:40.68675513364266,-73.60219374140628
+    //await BarcodeScanner.scan()
+     
+     var  result= " https://platzi.com/";
+     //setState(() => scanResult = result);
 
-      var result;
+     //  String contenido = scanResult.rawContent ?? "";
+      print("INFORMACION : $result");
+       if(result != null)
+       {
+         final scan =ScanModel(valor:result); //se esta usando el modelo providers => export
+
+         DBProvider.db.nuevoScan(scan);
+      }
+    /*   var result;
       try {
      
       result= await BarcodeScanner.scan();
@@ -76,7 +90,7 @@ class _HomePageState extends State<HomePage> {
         scanResult = result;
       });
     } 
-    if(result != null)
+    if(scanResult != null)
     {
        print("INFORMACION 1: $result"  ); 
     }
@@ -90,7 +104,7 @@ class _HomePageState extends State<HomePage> {
     developer.log('log me', name: prueba1); 
      print("INFORMACION 1: $prueba1"  );  
         
-
+    */
 
   }
 

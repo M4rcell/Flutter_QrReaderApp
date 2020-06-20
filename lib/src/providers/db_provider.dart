@@ -4,8 +4,10 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:qrreaderapp/src/models/scan_model.dart';
 import 'package:sqflite/sqflite.dart';
+
+import 'package:qrreaderapp/src/models/scan_model.dart';//para poder usa en este archivo
+export 'package:qrreaderapp/src/models/scan_model.dart';// es para exponer este modelo archivo que importen el modelo db_provider
 
 
 class DBProvider{
@@ -20,11 +22,9 @@ class DBProvider{
 
    // VALIDAR SI DB EXISTE
    Future<Database> get database async{
-      if (_database!= null) {
-        return _database;
+      if (_database!= null) return _database;
         
-      }
-  
+       
       _database= await initDB();
       return _database;
     }
@@ -71,7 +71,7 @@ class DBProvider{
 
      final db = await database;
 
-     final res = await db.insert('Scan',nuevoScan .toJson());
+     final res = await db.insert('Scans',nuevoScan .toJson());
      
      return res;
    }
