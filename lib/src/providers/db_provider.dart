@@ -120,7 +120,7 @@ class DBProvider{
 
    // ACTUALIZAR REGISTROS
 
-   updateScan( ScanModel nuevoScan) async{
+  Future<int> updateScan( ScanModel nuevoScan) async{
 
      final db = await database;
 
@@ -128,5 +128,9 @@ class DBProvider{
 
      return res;
    }
+
+   // ELIMINAR REGISTROS
+
+
 
 }
