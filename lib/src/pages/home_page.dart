@@ -5,6 +5,7 @@ import 'package:qrreaderapp/src/pages/mapas_page.dart';
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 
 import 'package:barcode_scan/barcode_scan.dart';
+import 'dart:developer' as developer;
 
 class HomePage extends StatefulWidget {
   @override
@@ -22,6 +23,9 @@ class _HomePageState extends State<HomePage> {
       appBar:AppBar(
        title:  Text("QR Scanner"),
        actions: <Widget>[
+         
+        /* Text(scanResult.rawContent ?? "")
+         , */
          IconButton(
            icon: Icon(Icons.delete_forever),
            onPressed: (){},
@@ -39,15 +43,20 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       
+
+      
     );
   }
   
   Future _scanQR() async{
 
-     
+    // https://platzi.com/
+    //
+
+      var result;
       try {
      
-      var result = await BarcodeScanner.scan();
+      result= await BarcodeScanner.scan();
 
       setState(() => scanResult = result);
     } on PlatformException catch (e) {
@@ -58,15 +67,29 @@ class _HomePageState extends State<HomePage> {
 
       if (e.code == BarcodeScanner.cameraAccessDenied) {
         setState(() {
-          result.rawContent = 'The user did not grant the camera permission!';
+          result.rawContent = '¡El usuario no otorgó permiso a la cámara!';
         });
       } else {
-        result.rawContent = 'Unknown error: $e';
+        result.rawContent = 'Error Desconocido: $e';
       }
       setState(() {
         scanResult = result;
       });
-    }          
+    } 
+    if(result != null)
+    {
+       print("INFORMACION 1: $result"  ); 
+    }
+
+    String prueba = scanResult.type?.toString()??"";
+    String prueba1 = scanResult.rawContent ?? "";
+    String prueba2 =scanResult.format?.toString() ?? "";
+    String prueba3 =scanResult.formatNote ?? "";
+    
+
+    developer.log('log me', name: prueba1); 
+     print("INFORMACION 1: $prueba1"  );  
+        
 
 
   }
