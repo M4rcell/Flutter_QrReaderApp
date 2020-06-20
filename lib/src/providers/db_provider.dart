@@ -95,11 +95,38 @@ class DBProvider{
      
      //si hay informacion 
      List<ScanModel> list = res.isNotEmpty 
-                           ? res.map((c) => ScanModel.fromJson(c)).toList() //if
+                           ? res.map((c) => ScanModel.fromJson(c)).toList() //if devuelve toda la lista que hay
                            :[]; // else lista nulo
 
       return list;                  
 
+   }
+
+    // SELECT - obtener  informacion por  tipo
+   Future <List<ScanModel>> getScanTipo(String tipo) async{
+
+     final db = await database;
+
+     final res = await db.rawQuery("SELECT * FROM Scans WHERE tipo='$tipo'");
+     
+     //si hay informacion 
+     List<ScanModel> list = res.isNotEmpty 
+                           ? res.map((c) => ScanModel.fromJson(c)).toList() //if devuelve toda la lista que hay
+                           :[]; // else lista nulo
+
+      return list;                  
+
+   }
+
+   // ACTUALIZAR REGISTROS
+
+   updateScan( ScanModel nuevoScan) async{
+
+     final db = await database;
+
+     final res =await db.update('Scans', nuevoScan.toJson(),where: 'id=?',whereArgs:[nuevoScan.id]);
+
+     return res;
    }
 
 }
