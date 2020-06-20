@@ -131,6 +131,23 @@ class DBProvider{
 
    // ELIMINAR REGISTROS
 
+  Future<int>deleteScanId( int id) async{
 
+    final db = await database;
+    final res = await db.delete('Scans', where:'id=?',whereArgs:[id]);
+
+    return res;
+  }
+
+    // ELIMINAR TODO LOS REGISTROS
+
+  Future<int>deleteScanAll( ) async{
+
+    final db = await database;
+
+    final res = await db.rawDelete('DELETE FROM Scans');
+
+    return res;
+  }
 
 }
